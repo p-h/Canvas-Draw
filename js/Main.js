@@ -1,0 +1,1 @@
+$(DrawingApp.View.loadImageList)
