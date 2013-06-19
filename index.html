@@ -14,7 +14,7 @@
 
 	</head>
 	<body>
-		<div data-role="page">
+		<div id="home" data-role="page">
 			<header data-role="header">
 				<h1>Drawings</h1>
 				<a href="#create-drawing" data-role="button" data-icon="plus" data-iconpos="notext" class="ui-btn-right"></a>
@@ -23,11 +23,12 @@
 				<li></li>
 			</ul>
 		</div>
+
 		<div id= "create-drawing" data-role="page">
 			<header data-role="header">
 				<h1>New Drawing</h1>
 			</header>
-			<input type="submit" name="backToList" value="zurück" id ="backToList"/>
+			<input type="submit" name="backToList" value="zurück" class ="back"/>
 			<input type="submit" name="saveDrawing" value="Speichern" onclick="save()" id="saveDrawing">
 
 			<canvas id= "canvas">
@@ -35,7 +36,21 @@
 					Hier sollte eigentlich eine Leinwand sein.
 				</p>
 			</canvas>
-
+		</div>
+		
+		<div id="display" data-role="page">
+			<header data-role="header">
+				<h1 id="title"></h1>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+					<div data-icon="delete" data-role="button" data-shadow="false" data-iconpos="left" id="delete">Delete</div>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<div data-icon="arrow-l" data-role="button" data-shadow="false" data-iconpos="notext" class="back"></div>
+				</div>
+				</header>
+			<div id="content" data-role="content">
+				<img id="image" src="" alt="" />
+			</div>
 		</div>
 
 		<script type="text/javascript" src="js/lib/underscore_1.4.4.js"></script>

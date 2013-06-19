@@ -5,7 +5,8 @@ window.DrawingApp.View = (function() {
 		var drawingItems = DrawingApp.DB.readDrawingItems()
 		var listItems = _(drawingItems).map(function(item) {
 			return $("<li>", {
-				text : item.title
+				text : item.title,
+				"data-item": JSON.stringify(item)
 			}).append($("<img>", {
 				src : item.dataUrl,
 				alt : item.title
@@ -24,3 +25,20 @@ window.DrawingApp.View = (function() {
 		loadImageList : loadImageList
 	}
 })()
+
+
+$(function() {
+	$("#display").on("pagebeforeshow", function(event) {
+		var item = JSON.parse(sessionStorage.getItem("selected_item"));
+		if(item) {
+			$(this).find("#title").text(item.title);
+			$(this).find("#image").attr("src", item.dataURL);
+			$(this).find("#image").attr("alt", item.title);
+			$(this).find("#delete").attr("data-id", item.id);
+		} else {
+			// $.mobile.navigate("#home");
+		}
+	
+	});
+})
+
