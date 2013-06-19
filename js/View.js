@@ -40,5 +40,9 @@ $(function() {
 		}
 	
 	});
+	
+	$("#home").on("pagebeforeshow", function(event) {
+		DrawingApp.View.loadImageList();
+	});
 })
 

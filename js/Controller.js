@@ -7,13 +7,17 @@ $(function() {
 			$.mobile.changePage("#display");
 		}
 	})
-	
-	$(".back").click(function() {
-		$.mobile.navigate("#home")
+
+	$("#back").click(function() {
+		$.mobile.changePage("#home")
 	});
 	
 	$("#delete").click(function() {
-		deleteSelecteDrawing();
+		var id = $(this).attr("data-id");
+		if(id) {
+			DrawingApp.DB.deleteDrawingItemById(id);
+			$.mobile.navigate("#home")
+		}
 	});
 
 })
