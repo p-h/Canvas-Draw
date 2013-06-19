@@ -17,20 +17,27 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.3.1.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.theme-1.3.1.css" />
+		<link rel="stylesheet" href="css/drawingApp.css" />
+
 
 	</head>
 
 	<body>
-		<div>
-			<header>
-				<h1>create</h1>
-			</header>
 
-			<form>
-				<canvas id= "canvas" height="300" width="300"></canvas>
-				<input type="submit" name="saveDrawing" value="Speichern" onclick="save()">
-				<input type="submit" name="quitDrawing" value="Abbrechen" />
-			</form>
+			<header>
+				<input type="submit" name="backToList" value="zurück" id ="backToList"/>
+				<input type="submit" name="saveDrawing" value="Speichern" onclick="save()" id="saveDrawing">
+				
+			</header>
+			<div>
+				<canvas id= "canvas">
+					<p>Hier sollte eigentlich eine Leinwand sein.</p>
+				</canvas>
+				
+			
 		</div>
 		<script type="text/javascript" src="js/Model.js"></script>
 		<script type="text/javascript" src="js/DB.js"></script>
