@@ -17,7 +17,7 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-		
+
 	</head>
 
 	<body>
@@ -25,16 +25,15 @@
 			<header>
 				<h1>create</h1>
 			</header>
-			
-			<form>
-			<canvas id= "canvas" height="300" width="300">
-				</canvas>
-				<input type="submit" name="saveDrawing" value="Speichern" onclick="save()">
-				</form>
-				
-			<script type="text/javascript" src="/js/create.js"></script>
 
-			
+			<form>
+				<canvas id= "canvas" height="300" width="300"></canvas>
+				<input type="submit" name="saveDrawing" value="Speichern" onclick="save()">
+				<input type="submit" name="quitDrawing" value="Abbrechen" />
+			</form>
 		</div>
+		<script type="text/javascript" src="js/Model.js"></script>
+		<script type="text/javascript" src="js/DB.js"></script>
+		<script type="text/javascript" src="js/create.js"></script>
 	</body>
 </html>

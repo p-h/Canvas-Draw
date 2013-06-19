@@ -68,11 +68,17 @@ window.addEventListener('load',function(){
 //Speicherfunktion
 function save () {
 
+	//Fragt nach dem Titel des Bildes
+	var title = prompt("Titel:", "DrawingApp Zeichnung");
 	//Canvas und Context werden geholt.
 	 var canvas = document.getElementById('canvas');
 	 var context = canvas.getContext('2d');
 	 //Speichert die Canvas als DataURL
      var dataURL = canvas.toDataURL();
+     
+     var item = new DrawingApp.M
+		odel.DrawingItem(null, title, dataURL)
+		//TODO: in DB speichern
 }
 	 
 	 
