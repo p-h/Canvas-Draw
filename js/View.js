@@ -6,10 +6,16 @@ window.DrawingApp.View = (function() {
 		var listItems = _(drawingItems).map(function(item) {
 			return $("<li>", {
 				text : item.title,
-				"data-item": JSON.stringify(item)
+				"data-drawing-item" : JSON.stringify(item)
 			}).append($("<img>", {
 				src : item.dataUrl,
 				alt : item.title
+			})).append($("<div>", {
+				"data-drawing-item-id" : item.id,
+				"data-role" : "button",
+				"data-icon" : "delete",
+				"data-iconpos" : "notext",
+				"class" : "ui-btn-right delete-button"
 			}))
 		})
 
@@ -18,31 +24,23 @@ window.DrawingApp.View = (function() {
 			list.append(item)
 		})
 
-		list.listview("refresh")
+		list.trigger("create")
+	}
+
+	function displayDrawingItem(item) {
+		var page = $("#display")
+		var title = page.find("#title")
+		var image = page.find("#image")
+		var deleteButton = page.find("#delete")
+		title.text(item.title);
+		image.attr("src", item.dataUrl);
+		image.attr("alt", item.title);
+		deleteButton.attr("data-drawing-id", item.id);
 	}
 
 	return {
-		loadImageList : loadImageList
+		loadImageList : loadImageList,
+		displayDrawingItem : displayDrawingItem
 	}
 })()
-
-
-$(function() {
-	$("#display").on("pagebeforeshow", function(event) {
-		var item = JSON.parse(sessionStorage.getItem("selected_item"));
-		if(item) {
-			$(this).find("#title").text(item.title);
-			$(this).find("#image").attr("src", item.dataURL);
-			$(this).find("#image").attr("alt", item.title);
-			$(this).find("#delete").attr("data-id", item.id);
-		} else {
-			// $.mobile.navigate("#home");
-		}
-	
-	});
-	
-	$("#home").on("pagebeforeshow", function(event) {
-		DrawingApp.View.loadImageList();
-	});
-})
 
