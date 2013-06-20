@@ -8,10 +8,6 @@ $(function() {
 		}
 	})
 
-	$("#back").click(function() {
-		$.mobile.changePage("#home")
-	});
-	
 	$("#delete").click(function() {
 		var id = $(this).attr("data-id");
 		if(id) {
