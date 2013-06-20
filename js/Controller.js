@@ -48,9 +48,6 @@ $(function() {
 		var canvas = document.getElementById('canvas');
 		var context = canvas.getContext('2d');
 
-		context.fillStyle = "green"
-		context.fillRect(0, 0, 80, 100)
-
 		//Event Listener hinzufügen. Wenn der User die Zeichenfläche
 		//berürht, startet er den touchstart Event, bewegt er den
 		//Finger, beginnt das touchmove Event, hebt er den Finger
