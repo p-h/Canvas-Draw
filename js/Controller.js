@@ -19,6 +19,17 @@ $(function() {
 		$.mobile.navigate("#home")
 	})
 
+	$("#save-drawing").click(function() {
+		var canvas = $("#canvas")[0]
+		var title = "TODO"
+		var dataUrl = canvas.toDataURL()
+
+		var item = new DrawingApp.Model.DrawingItem(null, title, dataUrl)
+		DrawingApp.DB.insertDrawingItem(item)
+
+		$.mobile.navigate("#home")
+	})
+
 	$("#home").on("pagebeforeshow", function() {
 		DrawingApp.View.loadImageList()
 	})
@@ -33,17 +44,6 @@ $(function() {
 	})
 
 	$("#create-drawing").on("pagebeforeshow", function() {
-		function save() {
-
-			//Fragt nach dem Titel des Bildes
-			var title = prompt("Titel:", "DrawingApp Zeichnung");
-			//Speichert die Canvas als DataURL
-			var dataURL = canvas.toDataURL();
-
-			var item = new DrawingApp.Model.DrawingItem(null, title, dataURL);
-			var db = DrawingApp.DB.insertDrawingItem(item);
-		}
-
 		//Canvas Element und Context holen
 		var canvas = document.getElementById('canvas');
 		var context = canvas.getContext('2d');
