@@ -6,7 +6,7 @@
 	float: right;
 }
 
-#canvas{
+#canvas, .drawing-image {
 	border-style: solid;
 	border-width: 1px;
 	
