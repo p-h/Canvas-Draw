@@ -24,16 +24,18 @@
 			</ul>
 		</div>
 		<div id= "create-drawing" data-role="page">
+			<header data-role="header">
 				<h1>New Drawing</h1>
-				<input type="submit" name="backToList" value="zurück" id ="backToList"/>
-				<input type="submit" name="saveDrawing" value="Speichern" onclick="save()" id="saveDrawing">
-				
-			
-				<canvas id= "canvas">
-					<p>Hier sollte eigentlich eine Leinwand sein.</p>
-				</canvas>
-				
-			
+			</header>
+			<input type="submit" name="backToList" value="zurück" id ="backToList"/>
+			<input type="submit" name="saveDrawing" value="Speichern" onclick="save()" id="saveDrawing">
+
+			<canvas id= "canvas">
+				<p>
+					Hier sollte eigentlich eine Leinwand sein.
+				</p>
+			</canvas>
+
 		</div>
 
 		<script type="text/javascript" src="js/lib/underscore_1.4.4.js"></script>
