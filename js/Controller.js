@@ -48,6 +48,9 @@ $(function() {
 		var canvas = document.getElementById('canvas');
 		var context = canvas.getContext('2d');
 
+		// clear
+		canvas.width = canvas.width
+
 		//Event Listener hinzufügen. Wenn der User die Zeichenfläche
 		//berürht, startet er den touchstart Event, bewegt er den
 		//Finger, beginnt das touchmove Event, hebt er den Finger
