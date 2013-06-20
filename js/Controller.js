@@ -1,6 +1,6 @@
 $(function() {
 	// Register Events
-	$("#drawing-item-list").on("click", "li", function() {
+	$("#drawing-item-list").on("click", ".display-button", function() {
 		var itemStr = $(this).attr("data-drawing-item");
 		if (itemStr) {
 			var item = JSON.parse(itemStr)

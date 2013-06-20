@@ -5,18 +5,24 @@ window.DrawingApp.View = (function() {
 		var drawingItems = DrawingApp.DB.readDrawingItems()
 		var listItems = _(drawingItems).map(function(item) {
 			return $("<li>", {
-				text : item.title,
-				"data-drawing-item" : JSON.stringify(item)
-			}).append($("<img>", {
-				src : item.dataUrl,
-				alt : item.title
-			})).append($("<div>", {
-				"data-drawing-item-id" : item.id,
-				"data-role" : "button",
-				"data-icon" : "delete",
-				"data-iconpos" : "notext",
-				"class" : "ui-btn-right delete-button"
-			}))
+				html : [$("<img>", {
+					"class" : "drawing-image drawing-image-thumbnail",
+					src : item.dataUrl,
+					alt : item.title
+				}), $("<div>", {
+					"class" : "display-button ui-btn-left",
+					"data-role" : "button",
+					"data-icon" : "arrow-r",
+					"data-iconpos" : "notext",
+					"data-drawing-item" : JSON.stringify(item)
+				}), $("<div>", {
+					"class" : "ui-btn-right delete-button",
+					"data-drawing-item-id" : item.id,
+					"data-role" : "button",
+					"data-icon" : "delete",
+					"data-iconpos" : "notext",
+				})]
+			})
 		})
 
 		list.empty()
