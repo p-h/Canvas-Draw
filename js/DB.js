@@ -1,6 +1,7 @@
 window.DrawingApp = window.DrawingApp || {}
 window.DrawingApp.DB = (function() {
 	var LOCALSTORAGE_KEY = "drawing-items"
+	var LOCALSTORAGE_CURRENT_ITEM_KEY = "current-item"
 
 	function writeDrawingItems(drawingItems) {
 		var drawingItemsString = JSON.stringify(drawingItems)
@@ -52,7 +53,20 @@ window.DrawingApp.DB = (function() {
 		writeDrawingItems(itemsToWrite)
 	}
 
+	function setCurrentItem(item) {
+		var itemString = JSON.stringify(item)
+		localStorage.setItem(LOCALSTORAGE_CURRENT_ITEM_KEY, itemString)
+	}
+
+	function getCurrentItem(item) {
+		var itemString = localStorage.getItem(LOCALSTORAGE_CURRENT_ITEM_KEY)
+		var item = JSON.parse(itemString)
+		return item
+	}
+
 	return {
+		setCurrentItem : setCurrentItem,
+		getCurrentItem : getCurrentItem,
 		insertDrawingItem : insertDrawingItem,
 		readDrawingItems : readDrawingItems,
 		updateDrawingItem : updateDrawingItem,
