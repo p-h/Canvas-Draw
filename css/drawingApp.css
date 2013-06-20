@@ -9,11 +9,18 @@
 #canvas{
 	border-style: solid;
 	border-width: 1px;
-	height: 500px;
-	width: 500px;
-	float: left;
+	
 }
 
-header{
-	height: 10%
+@media all and (max-device-width = 640px) {
+	#canvas{
+		width: 500px;
+		height: 500px;
+}
+
+@media all and (min-device-width = 641px){
+	#canvas{
+		heigth: 800px;
+		width: 640px;
+	}
 }

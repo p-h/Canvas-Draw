@@ -53,23 +53,34 @@ window.addEventListener('load', function() {
 	//Funktion, die die Events handelt und die Koordinaten holt und
 	//an pen weiterleitet.
 	function draw(event) {
-		//Prüfen, ob nur ein Finger gerade auf dem Bildschirm ist.
+		//Prüfen, ob nur ein Finger gerade auf dem Bildschirm ist
 		if (event.targetTouches.length == 1) {
 			//Koordinaten werden geholt
 			var position = {
-				x : event.targetTouches[0].clientX,
-				y : event.targetTouches[0].clientY
+				x : event.targetTouches[0].clientX - getOffsetLeft(canvas),
+				y : event.targetTouches[0].clientY - getOffsetTop(canvas)
 			};
 
-			var object = canvas;
-			if (object.offsetParent) {
-
+			function getOffsetLeft(elem) {
+				var offsetLeft = 0;
 				do {
-					position.x -= object.offsetLeft;
-					position.y -= object.offsetTop;
-				} while((object = object.offsetParent) != null);
-
+					if (!isNaN(elem.offsetLeft)) {
+						offsetLeft += elem.offsetLeft;
+					}
+				} while( elem = elem.offsetParent );
+				return offsetLeft;
 			}
+
+			function getOffsetTop(elem) {
+				var offsetTop = 0;
+				do {
+					if (!isNaN(elem.offsetTop)) {
+						offsetTop += elem.offsetTop;
+					}
+				} while( elem = elem.offsetParent );
+				return offsetTop;
+			}
+
 			//Koordinaten werden übergeben
 			pen[event.type](position);
 		}
@@ -80,21 +91,19 @@ window.addEventListener('load', function() {
 	document.body.addEventListener('touchmove', function(event) {
 		event.preventDefault();
 	}, false);
+
+
 }, false);
 
 //Speicherfunktion
-function save() {
+	function save() {
 
 	//Fragt nach dem Titel des Bildes
 	var title = prompt("Titel:", "DrawingApp Zeichnung");
-	//Canvas und Context werden geholt.
-	var canvas = document.getElementById('canvas');
-	var context = canvas.getContext('2d');
 	//Speichert die Canvas als DataURL
 	var dataURL = canvas.toDataURL();
 
-	var item = new DrawingApp.M
-	odel.DrawingItem(null, title, dataURL)
-	//TODO: in DB speichern
+	var item = new DrawingApp.Model.DrawingItem(null, title, dataURL);
+	var db = DrawingApp.DB.insertDrawingItem(item);
 }
 

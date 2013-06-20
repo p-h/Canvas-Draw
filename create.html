@@ -12,11 +12,11 @@
 		<meta name="author" content="Zombie" />
 		<meta name="viewcreate" content="width=device-width">
 
-		<meta name="viewport" content="width=device-width initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
 		<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.structure-1.3.1.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.theme-1.3.1.css" />
@@ -26,13 +26,14 @@
 	</head>
 
 	<body>
-
-			<header>
+		<div data-role="page">
+			<header data-role="header">
+				<h1>New Drawing</h1>
 				<input type="submit" name="backToList" value="zurück" id ="backToList"/>
 				<input type="submit" name="saveDrawing" value="Speichern" onclick="save()" id="saveDrawing">
 				
 			</header>
-			<div id="canvasContainer">
+			
 				<canvas id= "canvas">
 					<p>Hier sollte eigentlich eine Leinwand sein.</p>
 				</canvas>
