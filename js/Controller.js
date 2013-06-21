@@ -51,6 +51,7 @@ $(function() {
 		var context = canvas.getContext('2d');
 
 		// clear
+		$("input[name=title]").val("")
 		canvas.width = canvas.width
 
 		//Event Listener hinzufügen. Wenn der User die Zeichenfläche
