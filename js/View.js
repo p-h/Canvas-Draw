@@ -33,6 +33,7 @@ window.DrawingApp.View = (function() {
 		})
 
 		list.trigger("create")
+		list.listview("refresh")
 	}
 
 	function displayDrawingItem(item) {
