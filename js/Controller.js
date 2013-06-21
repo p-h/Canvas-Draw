@@ -60,7 +60,9 @@ $(function() {
 		canvas.addEventListener('touchstart', draw, false);
 		canvas.addEventListener('touchmove', draw, false);
 		canvas.addEventListener('touchend', draw, false);
-
+		canvas.addEventListener('mousedown', draw, false);
+		canvas.addEventListener('mousemove', draw, false);
+		canvas.addEventListener('mouseup', draw, false);
 		//Das Zeichentool.
 		var pen = {
 			isDrawing : false, //Am Anfang ist isDrawing auf false gesetzt, da noch nicht gezeichnet wird.
@@ -93,43 +95,79 @@ $(function() {
 					this.touchmove(position);
 					this.isDrawing = false;
 				}
+			},
+			mousedown : function(position) {
+				context.beginPath();
+				//Der Path wird begonnen.
+				context.moveTo(position.x, position.y);
+				//Startposition wird auf die geholten Koordinaten gesetzt.
+				this.isDrawing = true;
+				//Der User zeichnet jetzt, also ist isDrawing nun true.
+			},
+
+			//Bewegt sich der Finger, müssen die neuen Koordinaten geholt werden.
+			mousemove : function(position) {
+				//Ist der User am zeichnen, wird eine Linie von den Anfangskoordinaten zu
+				//den neuen Koordinaten gezeichnet
+				if (this.isDrawing) {
+					context.lineTo(position.x, position.y);
+					context.stroke();
+				}
+			},
+			// Hebt der User den Finger werden die letzten Koordinaten geholt.
+			mouseup : function(position) {
+				//war der User am zeichnen, wird der letzte Teil der Linie noch gezeichnet.
+				//Dies geschieht über einen Aufruf von touchmove. Danach wird isDrawing auf
+				//false gesetzt.
+				if (this.isDrawing) {
+					this.mousemove(position);
+					this.isDrawing = false;
+				}
 			}
 		}
 
 		//Funktion, die die Events handelt und die Koordinaten holt und
 		//an pen weiterleitet.
 		function draw(event) {
+			//console.dir(event);
 			//Prüfen, ob nur ein Finger gerade auf dem Bildschirm ist
-			if (event.targetTouches.length == 1) {
-				//Koordinaten werden geholt
+
+			//Koordinaten werden geholt
+			if (event.targetTouches && event.targetTouches.length == 1) {
 				var position = {
+
 					x : event.targetTouches[0].clientX - getOffsetLeft(canvas),
 					y : event.targetTouches[0].clientY - getOffsetTop(canvas)
 				};
-
-				function getOffsetLeft(elem) {
-					var offsetLeft = 0;
-					do {
-						if (!isNaN(elem.offsetLeft)) {
-							offsetLeft += elem.offsetLeft;
-						}
-					} while( elem = elem.offsetParent );
-					return offsetLeft;
-				}
-
-				function getOffsetTop(elem) {
-					var offsetTop = 0;
-					do {
-						if (!isNaN(elem.offsetTop)) {
-							offsetTop += elem.offsetTop;
-						}
-					} while( elem = elem.offsetParent );
-					return offsetTop;
-				}
-
-				//Koordinaten werden übergeben
-				pen[event.type](position);
+			} else {
+				var position = {
+					x : event.pageX - getOffsetLeft(canvas),
+					y : event.pageY - getOffsetTop(canvas)
+				};
 			}
+
+			function getOffsetLeft(elem) {
+				var offsetLeft = 0;
+				do {
+					if (!isNaN(elem.offsetLeft)) {
+						offsetLeft += elem.offsetLeft;
+					}
+				} while( elem = elem.offsetParent );
+				return offsetLeft;
+			}
+
+			function getOffsetTop(elem) {
+				var offsetTop = 0;
+				do {
+					if (!isNaN(elem.offsetTop)) {
+						offsetTop += elem.offsetTop;
+					}
+				} while( elem = elem.offsetParent );
+				return offsetTop;
+			}
+
+			//Koordinaten werden übergeben
+			pen[event.type](position);
 
 		}
 
