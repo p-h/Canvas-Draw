@@ -23,7 +23,7 @@ $(function() {
 
 	$("#save-drawing").click(function() {
 		var canvas = $("#canvas")[0]
-		var title = "TODO"
+		var title = $("input[name=title]").val()
 		var dataUrl = canvas.toDataURL()
 
 		var item = new DrawingApp.Model.DrawingItem(null, title, dataUrl)
