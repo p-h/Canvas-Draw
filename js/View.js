@@ -41,7 +41,7 @@ window.DrawingApp.View = (function() {
 		title.text(item.title);
 		image.attr("src", item.dataUrl);
 		image.attr("alt", item.title);
-		deleteButton.attr("data-drawing-id", item.id);
+		deleteButton.attr("data-drawing-item-id", item.id)
 	}
 
 	return {

@@ -11,7 +11,7 @@ $(function() {
 		}
 	})
 
-	$("#drawing-item-list").on("click", ".delete-button", function() {
+	$("#drawing-item-list, #display").on("click", ".delete-button", function() {
 		var id = $(this).attr("data-drawing-item-id");
 		if (id) {
 			DrawingApp.DB.deleteDrawingItemById(id);
