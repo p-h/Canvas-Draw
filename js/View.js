@@ -5,7 +5,9 @@ window.DrawingApp.View = (function() {
 		var drawingItems = DrawingApp.DB.readDrawingItems()
 		var listItems = _(drawingItems).map(function(item) {
 			return $("<li>", {
-				html : [$("<img>", {
+				html : [$("<div>", {
+					text : item.title
+				}), $("<img>", {
 					"class" : "drawing-image drawing-image-thumbnail",
 					src : item.dataUrl,
 					alt : item.title
